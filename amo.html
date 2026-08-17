@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caça ao Tesouro ❤️</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #ffe6e9; /* Fundo rosa claro */
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #d63031; /* Vermelho romântico */
+            font-size: 24px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+        input {
+            width: 80%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 2px solid #ffb8b8;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+            text-transform: uppercase;
+            outline: none;
+        }
+        input:focus {
+            border-color: #d63031;
+        }
+        button {
+            background-color: #d63031;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 85%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #c0392b;
+        }
+        .hidden {
+            display: none;
+        }
+        .error {
+            color: #d63031;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: -5px;
+            margin-bottom: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FASE 1 -->
+    <div class="card" id="fase1">
+        <h1>❤️ Vamos Brincar?</h1>
+        <p>Te amo, meu amor!<br><br>Sua primeira pista: onde você costuma tomar aquilo que o seu pai te mandou esses dias?<br><br>Vá até lá, ache o bilhete escondido e digite a senha abaixo para liberar a próxima pista:</p>
+        <input type="text" id="senha1" placeholder="Digite a senha aqui">
+        <div class="error" id="erro1">Senha incorreta. Procure direito, gata!</div>
+        <button onclick="verificarSenha(1, 'BEIJO')">Avançar</button>
+    </div>
+
+    <!-- FASE 2 -->
+    <div class="card hidden" id="fase2">
+        <h1>❤️ Me Achou!</h1>
+        <p>Vamos continuar... <br><br>Todo domingo a gente come isso, mas já nem precisamos olhar como se faz. <br><br>Vá até a página dessa receita, ache o próximo bilhete com a senha secreta!</p>
+        <input type="text" id="senha2" placeholder="Digite a senha aqui">
+        <div class="error" id="erro2">Senha incorreta. Vai lá olhar a receita!</div>
+        <button onclick="verificarSenha(2, 'AMOR')">Avançar</button>
+    </div>
+
+    <!-- FASE 3 -->
+    <div class="card hidden" id="fase3">
+        <h1>❤️ Que Gata Esperta!</h1>
+        <p>Agora pense: o que a sua irmã comprou esses dias que é igualzinho ao seu? <br><br>Procure lá, pegue o último bilhete e digite a senha final!</p>
+        <input type="text" id="senha3" placeholder="Digite a senha aqui">
+        <div class="error" id="erro3">Senha incorreta. Quase lá!</div>
+        <button onclick="verificarSenha(3, 'TEAMO')">Avançar</button>
+    </div>
+
+    <!-- FINAL -->
+    <div class="card hidden" id="fase4">
+        <h1>🎉 Parabéns, meu amor! 🎉</h1>
+        <p>Você decifrou tudo e venceu a caça ao tesouro!<br><br>Seu prêmio final e muito especial está te esperando na nossa cama. Vai lá buscar!</p>
+    </div>
+
+    <script>
+        function verificarSenha(fase, senhaCorreta) {
+            // Pega o valor que ela digitou, remove espaços em branco e deixa tudo maiúsculo
+            let palpite = document.getElementById('senha' + fase).value.toUpperCase().trim();
+            
+            if (palpite === senhaCorreta) {
+                // Esconde a fase atual
+                document.getElementById('fase' + fase).classList.add('hidden');
+                // Mostra a próxima fase
+                document.getElementById('fase' + (fase + 1)).classList.remove('hidden');
+            } else {
+                // Mostra mensagem de erro
+                document.getElementById('erro' + fase).style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
